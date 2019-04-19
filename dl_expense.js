@@ -31,54 +31,54 @@
       
 */
 window.addEventListener("load", function () {
-   var changingCells = document.querySelectorAll("table#travelExp input.sum");
-   for (var i = 0; i < changingCells.length; i++) {
-      document.onchange = calcExp();
-   }
-   document.getElementById("submitButton").addEventListener("click", validateSummary);
+      var changingCells = document.querySelectorAll("table#travelExp input.sum");
+      for (var i = 0; i < changingCells.length; i++) {
+            document.onchange = calcExp();
+      }
+      document.getElementById("submitButton").addEventListener("click", validateSummary);
 });
 
 function validateSummary() {
-   var summary = document.querySelector("textarea#summary");
-   if (summary.validity.valueMissing) {
-      summary.setCustomValidity("You must include a summary of the trip in your report");
-   } else {
-      summary.setCustomValidity("");
-   }
+      var summary = document.querySelector("textarea#summary");
+      if (summary.validity.valueMissing) {
+            summary.setCustomValidity("You must include a summary of the trip in your report");
+      } else {
+            summary.setCustomValidity("");
+      }
 }
 
 function calcClass(sumClass) {
-   var sumFields = document.querySelectorAll(sumClass);
-   var sumTotal = 0;
-   for (var i = 0; i < sumFields.length; i++) {
-      var itemValue = parseFloat(sumFields[i]);
-      if (isNaN(itemValue) === false) {
-         sumTotal += itemValue;
+      var sumFields = document.querySelectorAll(sumClass);
+      var sumTotal = 0;
+      for (var i = 0; i < sumFields.length; i++) {
+            var itemValue = parseFloat(sumFields[i].value);
+            if (isNaN(itemValue) === false) {
+                  sumTotal += itemValue;
+            }
       }
       return sumTotal;
-   }
 }
 
 function calcExp() {
-   var expTable = document.querySelectorAll("table#travelExp tr");
-   for (var i = 0; i < expTable.length; i++) {
-      document.getElementById("subtotal" + [i]).value = calcClass("date" + [i]);
-      formatNumber(calcClass, 2);
-   }
+      var expTable = document.querySelectorAll('table#travelExp tbody tr');
+      for (var i = 0; i < expTable.length; i++) {
+            document.getElementById("subtotal" + i).value = calcClass("date" + i);
+            formatNumber(calcClass, 2);
+      }
 }
 
 
 
 function formatNumber(val, decimals) {
-   return val.toLocaleString(undefined, {
-      minimumFractionDigits: decimals,
-      maximumFractionDigits: decimals
-   });
+      return val.toLocaleString(undefined, {
+            minimumFractionDigits: decimals,
+            maximumFractionDigits: decimals
+      });
 }
 
 function formatUSCurrency(val) {
-   return val.toLocaleString('en-US', {
-      style: "currency",
-      currency: "USD"
-   });
+      return val.toLocaleString('en-US', {
+            style: "currency",
+            currency: "USD"
+      });
 }
