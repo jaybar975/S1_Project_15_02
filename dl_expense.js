@@ -62,9 +62,13 @@ function calcClass(sumClass) {
 function calcExp() {
       var expTable = document.querySelectorAll('table#travelExp tbody tr');
       for (var i = 0; i < expTable.length; i++) {
-            document.getElementById("subtotal" + i).value = calcClass("date" + i);
-            formatNumber(calcClass, 2);
+            document.getElementById("subtotal" + i).value = formatNumber(calcClass("date" + i), 2);
       }
+      document.getElementById("transTotal").value = formatNumber(calcClass("trans"), 2);
+      document.getElementById("lodgeTotal").value = formatNumber(calcClass("lodge"), 2);
+      document.getElementById("mealTotal").value = formatNumber(calcClass("meal"), 2);
+      document.getElementById("otherTotal").value = formatNumber(calcClass("other"), 2);
+      document.getElementById("expTotal").value = formatUSCurrency(calcClass("sum"));
 }
 
 

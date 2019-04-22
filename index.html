@@ -28,7 +28,7 @@
     <header>
         <nav class="horizontal">
             <ul>
-                <li><a href="#">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="#">Policies</a></li>
                 <li><a href="#">Reports</a></li>
                 <li><a href="#">Employment</a></li>
@@ -88,7 +88,9 @@
                     <th>Social Security Number<span>*</span></th>
                     <td colspan="2"><input type="text" name="ssn" id="ssn" required placeholder="nnn-nn-nnnn" /></td>
                     <th>Project<span>*</span></th>
-                    <td><input type="text" name="projID" id="projID" required placeholder="PROJ-xx-ddd" /></td>
+                    <td><input type="text" name="projID" id="projID" required placeholder="PROJ-xx-ddd"
+                            pattern="(PROJ)-[a-z]{2}-\d{3}" />
+                    </td>
                 </tr>
             </table>
 
